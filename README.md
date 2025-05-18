@@ -22,8 +22,6 @@ python3 tracker.py
 🧾 Output Format:
 
 ```
-$ python3 tracker.py
-
 🔄 Changed statuses:
   http://example.com changed from [FAILED] to [SUCCESS]
 
@@ -34,8 +32,6 @@ $ python3 tracker.py
 If no changes or new successes are found:
 
 ```
-$ python3 tracker.py
-
 ✅ No status changes.
 
 📭 No new successful targets.
