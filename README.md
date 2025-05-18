@@ -3,12 +3,12 @@ This script compares two files containing HTTP probe results and identifies URLs
 
 📦 Example Workflow:
 
-1. Run initial probe:
+1. Make first recon and initial probe:
 ```
 httpx -l alive_http_services.txt -probe -o probe1.txt
 ```
 2. Wait 1 week (or any desired period)...
-3. Run the probe again:
+3. Make recon again and run the second probe:
 ```
 httpx -l alive_http_services.txt -probe -o probe2.txt
 ```
