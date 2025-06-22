@@ -1,8 +1,7 @@
 import re
-import argparse
 
 def clean_status(raw_status):
-    # Удаляем цветовые escape-коды ANSI
+    # Remove ANSI color escape codes
     return re.sub(r'\x1b\[[0-9;]*m', '', raw_status).strip('[]')
 
 def parse_file(filename):
@@ -34,27 +33,22 @@ def compare_files(file1, file2):
 
     return changed, new_successes
 
-def main():
-    parser = argparse.ArgumentParser(description="Сравнение статусов URL между двумя файлами.")
-    parser.add_argument('file1', help="Первый файл для сравнения")
-    parser.add_argument('file2', help="Второй файл для сравнения")
-    args = parser.parse_args()
+if __name__ == "__main__":
+    file1 = 'probe1.txt'
+    file2 = 'probe2.txt'
 
-    changed, new_successes = compare_files(args.file1, args.file2)
+    changed, new_successes = compare_files(file1, file2)
 
     if changed:
-        print("🔄 Изменившиеся статусы:")
+        print("🔄 Changed statuses:")
         for url, old, new in sorted(changed):
-            print(f"  {url} изменился с [{old}] на [{new}]")
+            print(f"  {url} changed from [{old}] to [{new}]")
     else:
-        print("✅ Нет изменений статусов.")
+        print("✅ No status changes.")
 
     if new_successes:
-        print("\n🆕 Новые успешные таргеты:")
+        print("\n🆕 New successful targets:")
         for url in sorted(new_successes):
-            print(f"  {url} с текущим статусом [SUCCESS]")
+            print(f"  {url} with current status [SUCCESS]")
     else:
-        print("\n📭 Нет новых успешных таргетов.")
-
-if __name__ == "__main__":
-    main()
+        print("\n📭 No new successful targets.")
