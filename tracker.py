@@ -1,4 +1,5 @@
 import re
+import argparse
 
 def clean_status(raw_status):
     # Удаляем цветовые escape-коды ANSI
@@ -33,11 +34,13 @@ def compare_files(file1, file2):
 
     return changed, new_successes
 
-if __name__ == "__main__":
-    file1 = 'probe1.txt'
-    file2 = 'probe2.txt'
+def main():
+    parser = argparse.ArgumentParser(description="Сравнение статусов URL между двумя файлами.")
+    parser.add_argument('file1', help="Первый файл для сравнения")
+    parser.add_argument('file2', help="Второй файл для сравнения")
+    args = parser.parse_args()
 
-    changed, new_successes = compare_files(file1, file2)
+    changed, new_successes = compare_files(args.file1, args.file2)
 
     if changed:
         print("🔄 Изменившиеся статусы:")
@@ -52,3 +55,6 @@ if __name__ == "__main__":
             print(f"  {url} с текущим статусом [SUCCESS]")
     else:
         print("\n📭 Нет новых успешных таргетов.")
+
+if __name__ == "__main__":
+    main()
