@@ -16,7 +16,7 @@ httpx -l alive_http_services.txt -probe -o probe2.txt
 
 Compare `probe1.txt` and `probe2.txt` to detect status changes:
 ```
-python3 tracker.py
+python3 tracker.py probe1.txt probe2.txt
 ```
 
 🧾 Output Format:
